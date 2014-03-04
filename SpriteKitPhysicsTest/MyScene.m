@@ -137,6 +137,11 @@ static inline CGFloat ScalarRandomRange(CGFloat min, CGFloat max)
      [SKAction repeatAction:
       [SKAction sequence:@[shake, [shake reversedAction]]]
                       count:5]];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInNode:self];
+    [_circle removeAllActions];
+    [_circle runAction:[SKAction moveTo:touchLocation duration:0.5]];
 }
 
 - (void)update:(NSTimeInterval)currentTime
