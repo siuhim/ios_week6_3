@@ -24,6 +24,11 @@
 		BF2D269818C5458300DF057C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2D267318C5458200DF057C /* UIKit.framework */; };
 		BF2D26A018C5458300DF057C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF2D269E18C5458300DF057C /* InfoPlist.strings */; };
 		BF2D26A218C5458300DF057C /* SpriteKitPhysicsTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2D26A118C5458300DF057C /* SpriteKitPhysicsTestTests.m */; };
+		BF2D26B118C5471200DF057C /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2D26AC18C5471200DF057C /* circle.png */; };
+		BF2D26B218C5471200DF057C /* octagon.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2D26AD18C5471200DF057C /* octagon.png */; };
+		BF2D26B318C5471200DF057C /* sand.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2D26AE18C5471200DF057C /* sand.png */; };
+		BF2D26B418C5471200DF057C /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2D26AF18C5471200DF057C /* square.png */; };
+		BF2D26B518C5471200DF057C /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2D26B018C5471200DF057C /* triangle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +65,11 @@
 		BF2D269D18C5458300DF057C /* SpriteKitPhysicsTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpriteKitPhysicsTestTests-Info.plist"; sourceTree = "<group>"; };
 		BF2D269F18C5458300DF057C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF2D26A118C5458300DF057C /* SpriteKitPhysicsTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpriteKitPhysicsTestTests.m; sourceTree = "<group>"; };
+		BF2D26AC18C5471200DF057C /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		BF2D26AD18C5471200DF057C /* octagon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octagon.png; sourceTree = "<group>"; };
+		BF2D26AE18C5471200DF057C /* sand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand.png; sourceTree = "<group>"; };
+		BF2D26AF18C5471200DF057C /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		BF2D26B018C5471200DF057C /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +131,7 @@
 		BF2D267718C5458200DF057C /* SpriteKitPhysicsTest */ = {
 			isa = PBXGroup;
 			children = (
+				BF2D26AB18C5471200DF057C /* Shapes */,
 				BF2D268018C5458300DF057C /* AppDelegate.h */,
 				BF2D268118C5458300DF057C /* AppDelegate.m */,
 				BF2D268318C5458300DF057C /* Main.storyboard */,
@@ -162,6 +173,19 @@
 				BF2D269E18C5458300DF057C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF2D26AB18C5471200DF057C /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				BF2D26AC18C5471200DF057C /* circle.png */,
+				BF2D26AD18C5471200DF057C /* octagon.png */,
+				BF2D26AE18C5471200DF057C /* sand.png */,
+				BF2D26AF18C5471200DF057C /* square.png */,
+				BF2D26B018C5471200DF057C /* triangle.png */,
+			);
+			name = Shapes;
+			path = ../Shapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,7 +266,12 @@
 			files = (
 				BF2D267C18C5458200DF057C /* InfoPlist.strings in Resources */,
 				BF2D268F18C5458300DF057C /* Images.xcassets in Resources */,
+				BF2D26B318C5471200DF057C /* sand.png in Resources */,
+				BF2D26B118C5471200DF057C /* circle.png in Resources */,
+				BF2D26B518C5471200DF057C /* triangle.png in Resources */,
+				BF2D26B218C5471200DF057C /* octagon.png in Resources */,
 				BF2D268D18C5458300DF057C /* Spaceship.png in Resources */,
+				BF2D26B418C5471200DF057C /* square.png in Resources */,
 				BF2D268518C5458300DF057C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

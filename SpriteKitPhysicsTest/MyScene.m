@@ -7,47 +7,102 @@
 //
 
 #import "MyScene.h"
-
 @implementation MyScene
 
--(id)initWithSize:(CGSize)size {    
-    if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
+{
+    SKSpriteNode *_square;
+    SKSpriteNode *_circle;
+    SKSpriteNode *_triangle;
+}
+
+-(instancetype)initWithSize:(CGSize)size
+{
+    
+    if(self = [super initWithSize:size])
+    {
+        self.physicsBody =
+        [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        _square = [SKSpriteNode spriteNodeWithImageNamed:@"square"];
+        _square.position = CGPointMake(self.size.width * 0.25,
+                                       self.size.height * 0.50);
+        _square.physicsBody =
+        [SKPhysicsBody bodyWithRectangleOfSize:_square.size];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        [self addChild:_square];
+        _circle = [SKSpriteNode spriteNodeWithImageNamed:@"circle"];
+        _circle.position = CGPointMake(self.size.width * 0.50,
+                                       self.size.height * 0.50);
+        _circle.physicsBody =
+        [SKPhysicsBody bodyWithCircleOfRadius:_circle.size.width/2];
         
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
+        [self addChild:_circle];
+        _triangle = [SKSpriteNode spriteNodeWithImageNamed:@"triangle"];
+        _triangle.position = CGPointMake(self.size.width * 0.75,
+                                         self.size.height * 0.5);
+        [self addChild:_triangle];
         
-        [self addChild:myLabel];
+        //1
+        CGMutablePathRef trianglePath = CGPathCreateMutable();
+        //2
+        CGPathMoveToPoint(
+                          trianglePath, nil, -_triangle.size.width/2, -_triangle.size.height/2);
+        //3
+        CGPathAddLineToPoint(
+                             trianglePath, nil, _triangle.size.width/2, -_triangle.size.height/2);
+        CGPathAddLineToPoint(trianglePath, nil, 0, _triangle.size.height/2);
+        CGPathAddLineToPoint(
+                             trianglePath, nil, -_triangle.size.width/2, -_triangle.size.height/2);
+        //4
+        _triangle.physicsBody =
+        [SKPhysicsBody bodyWithPolygonFromPath:trianglePath];
+        //5
+        CGPathRelease(trianglePath);
+        
+        [self runAction:
+         [SKAction repeatAction:
+          [SKAction sequence:
+           @[[SKAction performSelector:@selector(spawnSand)
+                              onTarget:self],
+             [SKAction waitForDuration:0.02]
+             ]]
+                          count:100]
+         ];
     }
     return self;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
+- (void)spawnSand
+{
+    //create a small ball body
+    SKSpriteNode *sand =
+    [SKSpriteNode spriteNodeWithImageNamed:@"sand"];
+    sand.position = CGPointMake(
+                                (float)(arc4random()%(int)self.size.width),
+                                self.size.height - sand.size.height);
+    sand.physicsBody =
+    [SKPhysicsBody bodyWithCircleOfRadius:sand.size.width/2];
+    sand.name = @"sand";
+    [self addChild:sand];
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
+    sand.physicsBody.restitution = 1.0;
+    
+    sand.physicsBody.density = 20.0;
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (SKSpriteNode *node in self.children) {
+        if ([node.name isEqualToString:@"sand"])
+            [node.physicsBody applyImpulse:
+             CGVectorMake(0, arc4random()%50)];
+    }
+    
+    SKAction *shake = [SKAction moveByX:0 y:10 duration:0.05];
+    [self runAction:
+     [SKAction repeatAction:
+      [SKAction sequence:@[shake, [shake reversedAction]]]
+                      count:5]];
 }
 
 @end
